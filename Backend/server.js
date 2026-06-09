@@ -23,8 +23,8 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps, curl, or server-to-server)
     if (!origin) return callback(null, true);
 
-    // If origin is in allowed list, allow it
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // If origin is in allowed list or is a Vercel deployment, allow it
+    if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
       return callback(null, true);
     }
 
