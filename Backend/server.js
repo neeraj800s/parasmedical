@@ -13,6 +13,7 @@ const app = express();
 // Middleware for CORS
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://parasmedical-mrfeg92a2-neeraj800s-projects.vercel.app',
   'http://localhost:3000',
   process.env.FRONTEND_URL
 ].filter(Boolean);
@@ -102,8 +103,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`API documentation endpoint: http://localhost:${PORT}/`);
 });
