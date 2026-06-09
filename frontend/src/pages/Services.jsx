@@ -368,7 +368,7 @@ const ServicesPage = () => {
               <ArrowUpRight className="h-5 w-5" />
             </Link>
             <Link to="/about" className="btn-ghost text-lg">
-              About AuraCare
+              About PostMan
             </Link>
           </div>
         </div>

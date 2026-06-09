@@ -72,7 +72,7 @@ const Dashboard = () => {
   // Admin assignment state
   const [assignCaregiver, setAssignCaregiver] = useState({});
 
-  const token = localStorage.getItem('auracare_token');
+  const token = localStorage.getItem('postman_token');
 
   // Fetch patient data
   const fetchPatientData = async () => {
@@ -179,7 +179,7 @@ const Dashboard = () => {
 
       const data = await response.json();
       if (data.success) {
-        setBookingSuccess('AuraCare Booking created successfully! A clinician will review it.');
+        setBookingSuccess('PostMan Booking created successfully! A clinician will review it.');
         // Reset form
         setPatientAge('');
         setContactNumber('');

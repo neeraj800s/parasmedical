@@ -5,7 +5,7 @@ const User = require('../models/User');
 const { protect } = require('../middleware/auth');
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET || 'auracare_secret_key_123456', {
+  return jwt.sign({ id }, process.env.JWT_SECRET || 'postman_secret_key_123456', {
     expiresIn: '30d'
   });
 };

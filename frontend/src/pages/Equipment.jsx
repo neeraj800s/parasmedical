@@ -155,7 +155,7 @@ const EquipmentPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              Why Choose <span className="text-gradient">AuraCare Equipment?</span>
+              Why Choose <span className="text-gradient">PostMan Equipment?</span>
             </h2>
           </div>
 

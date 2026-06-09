@@ -377,7 +377,7 @@ const Home = () => {
               <span className="text-gradient">Under One Roof</span>
             </h2>
             <p className="text-xl text-slate-400 mt-5 max-w-2xl mx-auto leading-relaxed">
-              From critical ICU setups to daily nursing care — AuraCare delivers it all at your doorstep.
+              From critical ICU setups to daily nursing care — PostMan delivers it all at your doorstep.
             </p>
           </div>
 
@@ -423,7 +423,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { text: "Setting up an ICU for my father was incredibly stressful. AuraCare delivered a motorized cardiac bed, ventilator, and multi-para monitor within 4 hours. The clinical nurses were exceptional.", author: "Anjali Mehta", relation: "Daughter of Patient", location: "Mansarover, Jaipur" },
+              { text: "Setting up an ICU for my father was incredibly stressful. PostMan delivered a motorized cardiac bed, ventilator, and multi-para monitor within 4 hours. The clinical nurses were exceptional.", author: "Anjali Mehta", relation: "Daughter of Patient", location: "Mansarover, Jaipur" },
               { text: "The post-stroke neuro-rehabilitation visits by their physiotherapist made all the difference. In 3 months, my husband regained 80% grip strength and is walking independently.", author: "Rakesh Sharma", relation: "Spouse", location: "Jaipur, Rajasthan" },
               { text: "As a senior living alone, having a trained nurse attendant visit weekly gives me immense peace of mind. Their empathy and professionalism are unmatched.", author: "Kalyani Nair", relation: "Self Patient", location: "Jaipur" },
             ].map((rev, i) => (

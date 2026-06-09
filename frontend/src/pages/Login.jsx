@@ -50,7 +50,7 @@ const Login = () => {
             <div className="bg-emerald-500/15 p-3 rounded-xl animate-glow-pulse">
               <HeartPulse className="h-9 w-9 text-emerald-400" />
             </div>
-            <span className="text-3xl font-black text-white tracking-wide">AuraCare</span>
+            <span className="text-3xl font-black text-white tracking-wide">PostMan</span>
           </Link>
           <p className="text-sm text-slate-500 font-semibold tracking-[0.2em] uppercase">Secure Patient & Admin Portal</p>
         </div>
@@ -101,7 +101,7 @@ const Login = () => {
           </form>
 
           <p className="text-base text-slate-500 mt-7 text-center">
-            New to AuraCare?{' '}
+            New to PostMan?{' '}
             <Link to="/register" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors cursor-pointer">Create an account</Link>
           </p>
         </div>

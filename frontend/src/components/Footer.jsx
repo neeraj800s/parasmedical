@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col space-y-5">
           <Link to="/" className="flex items-center space-x-3">
             <HeartPulse className="h-8 w-8 text-emerald-400" />
-            <span className="text-2xl font-black text-white tracking-wide">AuraCare</span>
+            <span className="text-2xl font-black text-white tracking-wide">PostMan</span>
           </Link>
           <p className="text-base text-slate-400 leading-relaxed">
             Bringing hospital-grade clinical care, nursing, and ICU setups directly to your home.
@@ -63,7 +63,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 border-t border-emerald-950/40 flex flex-col sm:flex-row items-center justify-between text-base text-slate-500">
-        <p>© {new Date().getFullYear()} AuraCare Home Health. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} PostMan Home Health. All rights reserved.</p>
         <div className="flex space-x-6 mt-4 sm:mt-0">
           <a href="#" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-slate-300 transition-colors">Terms of Service</a>

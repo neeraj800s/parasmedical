@@ -60,7 +60,7 @@ const team = [
 ];
 
 const milestones = [
-  { year: '2018', event: 'Founded Paras Medical Store & AuraCare with a team of 5 clinical professionals, setting up our central hub in Mansarover, Jaipur.' },
+  { year: '2018', event: 'Founded Paras Medical Store & PostMan with a team of 5 clinical professionals, setting up our central hub in Mansarover, Jaipur.' },
   { year: '2019', event: 'Launched home nursing and ICU equipment rental services, partnering with 3 leading multi-specialty hospitals in Rajasthan.' },
   { year: '2020', event: 'Expanded support to home isolation patients, delivering over 1,500 oxygen concentrators and cylinders across Jaipur during critical health emergencies.' },
   { year: '2021', event: 'Crossed 5,000 patients served, launching dedicated diagnostics home-collection and advanced physiotherapy verticals.' },
@@ -107,7 +107,7 @@ const AboutPage = () => {
             Healing Begins <span className="text-gradient">Where the Heart Is</span>
           </h1>
           <p className={`text-xl md:text-2xl text-slate-400 leading-relaxed max-w-3xl mx-auto ${heroReveal.visible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
-            AuraCare was born from a simple belief — patients heal faster, more safely, and more happily in the comfort of their own home, surrounded by the people they love.
+            PostMan was born from a simple belief — patients heal faster, more safely, and more happily in the comfort of their own home, surrounded by the people they love.
           </p>
         </div>
       </section>
@@ -336,7 +336,7 @@ const AboutPage = () => {
         <div className="max-w-3xl mx-auto text-center">
           <Sparkles className="h-12 w-12 text-emerald-400 mx-auto mb-6 animate-spin-slow" />
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
-            Join the <span className="text-gradient">AuraCare Family</span>
+            Join the <span className="text-gradient">PostMan Family</span>
           </h2>
           <p className="text-xl text-slate-400 mb-10">
             Experience clinical excellence and compassionate care — right in the comfort of your home.

@@ -53,14 +53,14 @@ const Register = () => {
             <div className="bg-emerald-500/15 p-3 rounded-xl animate-glow-pulse">
               <HeartPulse className="h-9 w-9 text-emerald-400" />
             </div>
-            <span className="text-3xl font-black text-white tracking-wide">AuraCare</span>
+            <span className="text-3xl font-black text-white tracking-wide">PostMan</span>
           </Link>
           <p className="text-sm text-slate-500 font-semibold tracking-[0.2em] uppercase">Create Your Secure Account</p>
         </div>
 
         {/* Card */}
         <div className="glass-card-dark rounded-3xl p-8 md:p-10 gradient-border">
-          <h2 className="text-3xl font-black text-white mb-2">Join AuraCare</h2>
+          <h2 className="text-3xl font-black text-white mb-2">Join PostMan</h2>
           <p className="text-base text-slate-400 mb-8">Register to manage bookings, track vitals, and order equipment.</p>
 
           {(validationError || error) && (

@@ -47,7 +47,7 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-2xl font-black tracking-wide bg-gradient-to-r from-white via-emerald-100 to-emerald-300 bg-clip-text text-transparent">
-              AuraCare
+              PostMan
             </span>
             <span className="text-[11px] text-emerald-400/80 font-semibold tracking-[0.2em] uppercase">
               Home Health
