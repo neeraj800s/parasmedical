@@ -10,6 +10,10 @@ const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setVisible(true); observer.disconnect(); }
     }, { threshold });

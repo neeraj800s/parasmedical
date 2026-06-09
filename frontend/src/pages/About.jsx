@@ -9,6 +9,10 @@ const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setVisible(true); observer.disconnect(); }
     }, { threshold });
@@ -22,6 +26,10 @@ const useCounter = (target, duration = 2000) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setCount(target);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         let start = 0;
