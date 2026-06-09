@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Layers, CheckCircle, Sparkles, ArrowUpRight, Clock, Shield, Zap } from 'lucide-react';
 
-const useScrollReveal = (threshold = 0.12) => {
+const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {

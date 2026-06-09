@@ -6,7 +6,7 @@ import {
   ShieldCheck, ArrowUpRight, CheckCircle, Sparkles, ChevronRight
 } from 'lucide-react';
 
-const useScrollReveal = (threshold = 0.12) => {
+const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {

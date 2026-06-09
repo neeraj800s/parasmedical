@@ -22,7 +22,7 @@ const useCounter = (target, duration = 2000) => {
         }, 16);
         observer.disconnect();
       }
-    }, { threshold: 0.3 });
+    }, { threshold: 0.05 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target, duration]);
@@ -36,7 +36,7 @@ const useScrollReveal = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
-    }, { threshold: 0.15 });
+    }, { threshold: 0.02 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);

@@ -5,7 +5,7 @@ import {
   CheckCircle, Sparkles, Heart, Activity, Zap, Globe
 } from 'lucide-react';
 
-const useScrollReveal = (threshold = 0.12) => {
+const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -33,7 +33,7 @@ const useCounter = (target, duration = 2000) => {
         }, 16);
         observer.disconnect();
       }
-    }, { threshold: 0.3 });
+    }, { threshold: 0.05 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target, duration]);
