@@ -5,10 +5,11 @@ import { Truck, CheckCircle, Sparkles, ArrowUpRight, RotateCcw, ShoppingCart } f
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth < 768;
+  });
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setVisible(true);
       return;
     }
     const observer = new IntersectionObserver(([e]) => {

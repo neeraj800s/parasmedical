@@ -8,11 +8,12 @@ import {
 
 /* ── Animated Counter Hook ──────────────────────────────── */
 const useCounter = (target, duration = 2000) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth < 768 ? target : 0;
+  });
   const ref = useRef(null);
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setCount(target);
       return;
     }
     const observer = new IntersectionObserver(([entry]) => {
@@ -36,7 +37,9 @@ const useCounter = (target, duration = 2000) => {
 /* ── Scroll Reveal Hook ──────────────────────────────────── */
 const useScrollReveal = () => {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth < 768;
+  });
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       setVisible(true);

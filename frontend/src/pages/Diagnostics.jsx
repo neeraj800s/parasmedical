@@ -5,10 +5,11 @@ import { Layers, CheckCircle, Sparkles, ArrowUpRight, Clock, Shield, Zap } from 
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth < 768;
+  });
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setVisible(true);
       return;
     }
     const observer = new IntersectionObserver(([e]) => {
