@@ -13,8 +13,15 @@ const app = express();
 // Middleware for CORS
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://parasmedical-mrfeg92a2-neeraj800s-projects.vercel.app',
   'http://localhost:3000',
+
+  // Old Vercel URL
+  'https://parasmedical-mrfeg92a2-neeraj800s-projects.vercel.app',
+
+  // New Custom Domain
+  'https://parashomehealthcare.store',
+  'https://www.parashomehealthcare.store',
+
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
