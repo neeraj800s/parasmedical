@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import SEO from '../components/SEO';
 import { 
   Activity, 
   Calendar, 
@@ -24,7 +26,29 @@ import {
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('bookings'); // bookings, vitals, equipment, admin-bookings, admin-equipment
+
+  useEffect(() => {
+    if (location.state) {
+      const { tab, eqName: stateEqName, eqType: stateEqType, serviceType: stateServiceType, additionalNotes: stateNotes } = location.state;
+      if (tab) {
+        setActiveTab(tab);
+      }
+      if (stateEqName) {
+        setEqName(stateEqName);
+      }
+      if (stateEqType) {
+        setEqType(stateEqType);
+      }
+      if (stateServiceType) {
+        setServiceType(stateServiceType);
+      }
+      if (stateNotes) {
+        setAdditionalNotes(stateNotes);
+      }
+    }
+  }, [location]);
 
   // Patient states
   const [bookings, setBookings] = useState([]);
@@ -72,7 +96,7 @@ const Dashboard = () => {
   // Admin assignment state
   const [assignCaregiver, setAssignCaregiver] = useState({});
 
-  const token = localStorage.getItem('postman_token');
+  const token = localStorage.getItem('parashealthcare_token');
 
   // Fetch patient data
   const fetchPatientData = async () => {
@@ -179,7 +203,7 @@ const Dashboard = () => {
 
       const data = await response.json();
       if (data.success) {
-        setBookingSuccess('PostMan Booking created successfully! A clinician will review it.');
+        setBookingSuccess('Paras Healthcare Booking created successfully! A clinician will review it.');
         // Reset form
         setPatientAge('');
         setContactNumber('');
@@ -426,7 +450,7 @@ const Dashboard = () => {
 
   if (!user) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center p-6 bg-[#060d0c] hero-grid">
+      <div className="min-h-[80vh] flex items-center justify-center p-6 bg-hero-gradient hero-grid">
         <div className="text-center p-8 md:p-10 glass-card-dark rounded-3xl max-w-md w-full animate-scale-in">
           <Activity className="h-14 w-14 text-rose-500 animate-pulse mx-auto mb-6" />
           <h2 className="text-2xl font-bold text-slate-100 tracking-tight">Secure Vault Session Expired</h2>
@@ -439,7 +463,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#060d0c] text-[#e2e8f0] py-10 px-4 md:px-8 hero-grid">
+    <div className="min-h-screen bg-dark-page text-[#e2e8f0] py-10 px-4 md:px-8 hero-grid">
+      <SEO title="Clinical Dashboard" description="Access your Paras Healthcare secure patient portal or administrator dashboard to monitor clinical schedules, caregivers, daily vitals, and equipment logs." />
       <div className="max-w-7xl mx-auto flex flex-col space-y-10">
         
         {/* Welcome Header */}
@@ -582,6 +607,7 @@ const Dashboard = () => {
                       <option className="bg-[#0c1b18]">Physiotherapy</option>
                       <option className="bg-[#0c1b18]">Doctor Visit</option>
                       <option className="bg-[#0c1b18]">Trained Attendant</option>
+                      <option className="bg-[#0c1b18]">GDA Staff</option>
                       <option className="bg-[#0c1b18]">Diagnostics</option>
                     </select>
                   </div>
@@ -1032,12 +1058,17 @@ const Dashboard = () => {
                       <option className="bg-[#0c1b18]">Air Mattress (Anti-Decubitus)</option>
                       <option className="bg-[#0c1b18]">Foldable Wheelchair</option>
                       <option className="bg-[#0c1b18]">Motorized Wheelchair</option>
+                      <option className="bg-[#0c1b18]">Reclining Wheelchair</option>
+                      <option className="bg-[#0c1b18]">Adjustable Walker</option>
                       <option className="bg-[#0c1b18]">Commode Chair</option>
                       <option className="bg-[#0c1b18]">Patient Monitor (Multi-Para)</option>
                       <option className="bg-[#0c1b18]">Pulse Oximeter (Tabletop)</option>
                       <option className="bg-[#0c1b18]">Syringe Pump</option>
                       <option className="bg-[#0c1b18]">Infusion Pump</option>
+                      <option className="bg-[#0c1b18]">Enteral Feeding Pump</option>
                       <option className="bg-[#0c1b18]">DVT Pump</option>
+                      <option className="bg-[#0c1b18]">Nebulizer Machine</option>
+                      <option className="bg-[#0c1b18]">Hydraulic Patient Lifter</option>
                     </select>
                   </div>
 

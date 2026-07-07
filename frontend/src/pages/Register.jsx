@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { HeartPulse, Mail, Lock, ShieldAlert, ArrowRight, Eye, EyeOff, User } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Register = () => {
   const { register, error, setError } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName]             = useState('');
   const [email, setEmail]           = useState('');
   const [password, setPassword]     = useState('');
@@ -31,7 +33,7 @@ const Register = () => {
     const result = await register(name, email, password, 'patient');
     setLoading(false);
     if (result.success) {
-      navigate('/dashboard');
+      navigate(location.state?.from || '/dashboard', { state: location.state });
     } else {
       setValidationError(result.message || result.error || 'Failed to create account');
     }
@@ -40,7 +42,12 @@ const Register = () => {
   const inputClass = "w-full bg-black/40 border border-emerald-900/40 text-white text-base pl-12 pr-4 py-4 rounded-2xl focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all placeholder-slate-600";
 
   return (
-    <div className="min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #071410 60%, #060d0c 100%)' }}>
+    <div className="min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden bg-hero-gradient">
+      <SEO 
+        title="Secure Registration"
+        description="Register a free account with Paras Healthcare to book home clinical services, rent or purchase medical equipment, and track daily vitals."
+        keywords="paras healthcare register, sign up home care jaipur, home healthcare portal"
+      />
       <div className="absolute inset-0 hero-grid opacity-30 pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 h-80 w-80 rounded-full bg-teal-500/6 blur-[120px] animate-float pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 h-72 w-72 rounded-full bg-emerald-500/5 blur-[100px] animate-float-slow pointer-events-none" style={{ animationDelay: '2s' }} />
@@ -53,14 +60,14 @@ const Register = () => {
             <div className="bg-emerald-500/15 p-3 rounded-xl animate-glow-pulse">
               <HeartPulse className="h-9 w-9 text-emerald-400" />
             </div>
-            <span className="text-3xl font-black text-white tracking-wide">PostMan</span>
+            <span className="text-3xl font-black text-white tracking-wide">Paras Healthcare</span>
           </Link>
           <p className="text-sm text-slate-500 font-semibold tracking-[0.2em] uppercase">Create Your Secure Account</p>
         </div>
 
         {/* Card */}
         <div className="glass-card-dark rounded-3xl p-8 md:p-10 gradient-border">
-          <h2 className="text-3xl font-black text-white mb-2">Join PostMan</h2>
+          <h2 className="text-3xl font-black text-white mb-2">Join Paras Healthcare</h2>
           <p className="text-base text-slate-400 mb-8">Register to manage bookings, track vitals, and order equipment.</p>
 
           {(validationError || error) && (

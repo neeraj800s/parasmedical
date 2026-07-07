@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Truck, CheckCircle, Sparkles, ArrowUpRight, RotateCcw, ShoppingCart } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
@@ -61,10 +62,15 @@ const EquipmentPage = () => {
   const perksReveal = useScrollReveal();
 
   return (
-    <div className="page-enter" style={{ background: '#060d0c' }}>
+    <div className="page-enter bg-dark-page">
+      <SEO 
+        title="Rent or Buy Medical Equipment in Jaipur"
+        description="Rent or purchase premium, certified medical equipment in Malviya Nagar, Jaipur. We provide oxygen concentrators, BiPAP machines, ICU motorized beds, monitors, and wheelchairs with free same-day delivery."
+        keywords="rent oxygen concentrator jaipur, buy bipap machine jaipur, rent medical bed jaipur, wheelchair rent jaipur, medical equipment jaipur, paras healthcare, paras medical store"
+      />
 
       {/* ══ PAGE HERO ══════════════════════════════════════ */}
-      <section className="relative py-28 px-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #071412 60%, #060d0c 100%)' }}>
+      <section className="relative py-28 px-4 overflow-hidden bg-hero-gradient">
         <div className="absolute inset-0 hero-grid opacity-40" />
         <div className="absolute top-1/3 left-1/3 h-72 w-72 rounded-full bg-teal-500/6 blur-[100px] animate-float pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-emerald-500/5 blur-[120px] animate-float-slow pointer-events-none" style={{ animationDelay: '3s' }} />
@@ -94,7 +100,7 @@ const EquipmentPage = () => {
       <div className="section-divider" />
 
       {/* ══ EQUIPMENT GRID ═════════════════════════════════ */}
-      <section ref={gridReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={gridReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
@@ -129,6 +135,7 @@ const EquipmentPage = () => {
                 <div className="pt-6 mt-6 border-t border-emerald-950/50 grid grid-cols-2 gap-3">
                   <Link
                     to={user ? "/dashboard" : "/login"}
+                    state={user ? { tab: 'equipment', eqName: eq.name, eqType: 'Rent' } : { from: '/dashboard', tab: 'equipment', eqName: eq.name, eqType: 'Rent' }}
                     className="flex items-center justify-center space-x-1.5 bg-teal-500/10 border border-teal-500/20 hover:bg-teal-500/20 text-teal-300 font-bold py-2.5 rounded-xl text-sm transition-all active:scale-95"
                   >
                     <RotateCcw className="h-4 w-4" />
@@ -136,6 +143,7 @@ const EquipmentPage = () => {
                   </Link>
                   <Link
                     to={user ? "/dashboard" : "/login"}
+                    state={user ? { tab: 'equipment', eqName: eq.name, eqType: 'Buy' } : { from: '/dashboard', tab: 'equipment', eqName: eq.name, eqType: 'Buy' }}
                     className="flex items-center justify-center space-x-1.5 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-300 font-bold py-2.5 rounded-xl text-sm transition-all active:scale-95"
                   >
                     <ShoppingCart className="h-4 w-4" />
@@ -151,11 +159,11 @@ const EquipmentPage = () => {
       <div className="section-divider" />
 
       {/* ══ PERKS ══════════════════════════════════════════ */}
-      <section ref={perksReveal.ref} className="py-24 px-4" style={{ background: 'linear-gradient(180deg, #060d0c 0%, #071512 100%)' }}>
+      <section ref={perksReveal.ref} className="py-24 px-4 bg-section-alternate">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              Why Choose <span className="text-gradient">PostMan Equipment?</span>
+              Why Choose <span className="text-gradient">Paras Healthcare Equipment?</span>
             </h2>
           </div>
 
@@ -175,7 +183,7 @@ const EquipmentPage = () => {
       </section>
 
       {/* ══ CTA ════════════════════════════════════════════ */}
-      <section className="py-20 px-4 border-t border-emerald-950/40" style={{ background: '#030808' }}>
+      <section className="py-20 px-4 border-t border-emerald-950/40 bg-section-footer-cta">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
             Need Equipment <span className="text-gradient">Delivered Today?</span>
@@ -184,7 +192,11 @@ const EquipmentPage = () => {
             Register now and get your medical equipment order confirmed within minutes.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <Link to={user ? "/dashboard" : "/register"} className="btn-primary flex items-center space-x-2 text-lg">
+            <Link
+              to={user ? "/dashboard" : "/register"}
+              state={user ? { tab: 'equipment' } : { from: '/dashboard', tab: 'equipment' }}
+              className="btn-primary flex items-center space-x-2 text-lg"
+            >
               <span>Request Equipment Now</span>
               <ArrowUpRight className="h-5 w-5" />
             </Link>

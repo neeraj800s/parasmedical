@@ -4,12 +4,12 @@ import { HeartPulse, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="py-16 px-4 border-t border-emerald-950/60" style={{ background: '#030808' }}>
+    <footer className="py-16 px-4 border-t border-emerald-950/60 bg-section-footer-cta">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-left">
         <div className="flex flex-col space-y-5">
           <Link to="/" className="flex items-center space-x-3">
             <HeartPulse className="h-8 w-8 text-emerald-400" />
-            <span className="text-2xl font-black text-white tracking-wide">PostMan</span>
+            <span className="text-2xl font-black text-white tracking-wide">Paras Healthcare</span>
           </Link>
           <p className="text-base text-slate-400 leading-relaxed">
             Bringing hospital-grade clinical care, nursing, and ICU setups directly to your home.
@@ -25,7 +25,7 @@ const Footer = () => {
             </a>
             <div className="flex items-start space-x-2.5">
               <MapPin className="h-4 w-4 text-emerald-400 shrink-0 mt-1" />
-              <span>Mansarover, Jaipur (Rajasthan)</span>
+              <span>Malviya Nagar, Jaipur (Rajasthan)</span>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 border-t border-emerald-950/40 flex flex-col sm:flex-row items-center justify-between text-base text-slate-500">
-        <p>© {new Date().getFullYear()} PostMan Home Health. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Paras Healthcare. All rights reserved.</p>
         <div className="flex space-x-6 mt-4 sm:mt-0">
           <a href="#" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-slate-300 transition-colors">Terms of Service</a>

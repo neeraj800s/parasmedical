@@ -19,7 +19,7 @@ function App() {
     <AuthProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen relative" style={{ background: '#060d0c' }}>
+        <div className="flex flex-col min-h-screen relative bg-dark-page">
           <Navbar />
           <main className="flex-grow">
             <Routes>

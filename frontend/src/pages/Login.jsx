@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { HeartPulse, Mail, Lock, ShieldAlert, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Login = () => {
   const { login, error, setError } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail]           = useState('');
   const [password, setPassword]     = useState('');
   const [loading, setLoading]       = useState(false);
@@ -28,7 +30,7 @@ const Login = () => {
     const result = await login(email, password);
     setLoading(false);
     if (result.success) {
-      navigate('/dashboard');
+      navigate(location.state?.from || '/dashboard', { state: location.state });
     } else {
       setValidationError(result.message || result.error || 'Invalid email or password');
     }
@@ -37,7 +39,12 @@ const Login = () => {
   const inputClass = "w-full bg-black/40 border border-emerald-900/40 text-white text-base pl-12 pr-4 py-4 rounded-2xl focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all placeholder-slate-600";
 
   return (
-    <div className="min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #071410 60%, #060d0c 100%)' }}>
+    <div className="min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden bg-hero-gradient">
+      <SEO 
+        title="Secure Login"
+        description="Access your Paras Healthcare secure patient or admin dashboard to request care services, check vitals, or manage clinical bookings."
+        keywords="paras healthcare login, patient portal jaipur, admin portal paras healthcare"
+      />
       <div className="absolute inset-0 hero-grid opacity-30 pointer-events-none" />
       <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-emerald-500/6 blur-[120px] animate-float pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-teal-500/5 blur-[100px] animate-float-slow pointer-events-none" />
@@ -50,7 +57,7 @@ const Login = () => {
             <div className="bg-emerald-500/15 p-3 rounded-xl animate-glow-pulse">
               <HeartPulse className="h-9 w-9 text-emerald-400" />
             </div>
-            <span className="text-3xl font-black text-white tracking-wide">PostMan</span>
+            <span className="text-3xl font-black text-white tracking-wide">Paras Healthcare</span>
           </Link>
           <p className="text-sm text-slate-500 font-semibold tracking-[0.2em] uppercase">Secure Patient & Admin Portal</p>
         </div>
@@ -101,7 +108,7 @@ const Login = () => {
           </form>
 
           <p className="text-base text-slate-500 mt-7 text-center">
-            New to PostMan?{' '}
+            New to Paras Healthcare?{' '}
             <Link to="/register" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors cursor-pointer">Create an account</Link>
           </p>
         </div>

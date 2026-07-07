@@ -5,6 +5,7 @@ import {
   Search, ChevronRight, Sparkles, ArrowUpRight,
   Activity, Stethoscope, Layers, Truck
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 /* ── Animated Counter Hook ──────────────────────────────── */
 const useCounter = (target, duration = 2000) => {
@@ -12,25 +13,46 @@ const useCounter = (target, duration = 2000) => {
     return typeof window !== 'undefined' && window.innerWidth < 768 ? target : 0;
   });
   const ref = useRef(null);
+
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       return;
     }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        let start = 0;
-        const step = target / (duration / 16);
-        const timer = setInterval(() => {
-          start += step;
-          if (start >= target) { setCount(target); clearInterval(timer); }
-          else setCount(Math.floor(start));
-        }, 16);
-        observer.disconnect();
-      }
-    }, { threshold: 0.05 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    
+    let timer;
+    let observer;
+
+    if (ref.current) {
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          let start = 0;
+          const step = target / (duration / 16);
+          
+          if (timer) clearInterval(timer);
+          
+          timer = setInterval(() => {
+            start += step;
+            if (start >= target) {
+              setCount(target);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+          
+          observer.disconnect();
+        }
+      }, { threshold: 0.05 });
+      
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+      if (timer) clearInterval(timer);
+    };
   }, [target, duration]);
+
   return { count, ref };
 };
 
@@ -57,8 +79,8 @@ const useScrollReveal = () => {
 const Home = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const { count: patients, ref: r1 } = useCounter(10000);
-  const { count: nurses,   ref: r2 } = useCounter(2500);
+  const { count: patients, ref: r1 } = useCounter(100);
+  const { count: nurses,   ref: r2 } = useCounter(50);
   const trustReveal  = useScrollReveal();
   const heroReveal   = useScrollReveal();
 
@@ -76,7 +98,7 @@ const Home = () => {
       badgeBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300',
       glowBg: 'bg-emerald-500/10',
       btnClass: 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 hover:shadow-emerald-500/20',
-      bgGradient: 'linear-gradient(135deg, #030808 0%, #061410 40%, #091e1a 100%)',
+      bgGradient: 'linear-gradient(135deg, #0c1a26 0%, #18334a 50%, #12283a 100%)',
       imageBorder: 'border-emerald-500/25 shadow-[0_0_50px_rgba(16,185,129,0.35)]',
       indicatorColor: 'bg-emerald-400',
     },
@@ -91,7 +113,7 @@ const Home = () => {
       badgeBg: 'bg-teal-500/10 border-teal-500/20 text-teal-300',
       glowBg: 'bg-teal-500/8',
       btnClass: 'bg-gradient-to-r from-teal-400 to-emerald-500 text-slate-950 hover:shadow-teal-500/20',
-      bgGradient: 'linear-gradient(135deg, #020706 0%, #051412 40%, #08211d 100%)',
+      bgGradient: 'linear-gradient(135deg, #0b1824 0%, #163046 50%, #102537 100%)',
       imageBorder: 'border-teal-500/25 shadow-[0_0_50px_rgba(20,184,166,0.35)]',
       indicatorColor: 'bg-teal-400',
     },
@@ -106,7 +128,7 @@ const Home = () => {
       badgeBg: 'bg-rose-500/10 border-rose-500/20 text-rose-300',
       glowBg: 'bg-rose-500/8',
       btnClass: 'bg-gradient-to-r from-rose-500 to-pink-600 text-white hover:shadow-rose-500/20',
-      bgGradient: 'linear-gradient(135deg, #080304 0%, #150609 40%, #20090f 100%)',
+      bgGradient: 'linear-gradient(135deg, #0e1e2d 0%, #1c3c58 50%, #152f45 100%)',
       imageBorder: 'border-rose-500/25 shadow-[0_0_50px_rgba(244,63,94,0.35)]',
       indicatorColor: 'bg-rose-400',
     },
@@ -121,7 +143,7 @@ const Home = () => {
       badgeBg: 'bg-sky-500/10 border-sky-500/20 text-sky-300',
       glowBg: 'bg-sky-500/8',
       btnClass: 'bg-gradient-to-r from-sky-400 to-indigo-500 text-slate-950 hover:shadow-sky-500/20',
-      bgGradient: 'linear-gradient(135deg, #030508 0%, #060e15 40%, #091621 100%)',
+      bgGradient: 'linear-gradient(135deg, #0c1a26 0%, #18334a 50%, #12283a 100%)',
       imageBorder: 'border-sky-500/25 shadow-[0_0_50px_rgba(56,189,248,0.35)]',
       indicatorColor: 'bg-sky-400',
     },
@@ -136,7 +158,7 @@ const Home = () => {
       badgeBg: 'bg-amber-500/10 border-amber-500/20 text-amber-300',
       glowBg: 'bg-amber-500/8',
       btnClass: 'bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 hover:shadow-amber-500/20',
-      bgGradient: 'linear-gradient(135deg, #080603 0%, #151006 40%, #211909 100%)',
+      bgGradient: 'linear-gradient(135deg, #0a1722 0%, #142a3e 50%, #0e2030 100%)',
       imageBorder: 'border-amber-500/25 shadow-[0_0_50px_rgba(245,158,11,0.35)]',
       indicatorColor: 'bg-amber-400',
     },
@@ -162,7 +184,12 @@ const Home = () => {
   ];
 
   return (
-    <div className="page-enter bg-dark-section">
+    <div className="page-enter bg-dark-page">
+      <SEO 
+        title="Home ICU Setup & Home Nursing Services in Jaipur"
+        description="Paras Healthcare provides hospital-grade home ICU setups, certified nursing services, home physiotherapy, lab tests, and medical equipment on rent/sale in Malviya Nagar, Jaipur."
+        keywords="home healthcare jaipur, home nursing jaipur, home icu setup jaipur, physiotherapy home visit, rent medical equipment jaipur, paras healthcare, paras medical store"
+      />
 
       {/* ══ HERO SLIDESHOW ══════════════════════════════════════ */}
       <header className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 px-4 md:px-8 overflow-hidden">
@@ -217,7 +244,7 @@ const Home = () => {
               >
                 {/* Slide Badge */}
                 <div className={`inline-flex items-center space-x-2.5 border px-4 py-2 rounded-full w-fit ${slide.badgeBg}`}>
-                  <Sparkles className="h-4 w-4 animate-spin-slow" />
+                  <Sparkles className={`h-4 w-4 ${currentSlide === idx ? 'animate-spin-slow' : ''}`} />
                   <span className="text-xs md:text-sm font-bold uppercase tracking-[0.2em]">
                     {slide.badge}
                   </span>
@@ -266,7 +293,9 @@ const Home = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="h-full w-full object-cover rounded-full animate-breathing-zoom"
+                  className={`h-full w-full object-cover rounded-full ${
+                    currentSlide === idx ? 'animate-breathing-zoom' : ''
+                  }`}
                 />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
@@ -300,7 +329,7 @@ const Home = () => {
       </header>
 
       {/* ══ SEARCH & STATISTICS CENTER ════════════════════ */}
-      <section className="py-12 px-4 border-b border-emerald-950/60" style={{ background: '#040b09' }}>
+      <section className="py-12 px-4 border-b border-emerald-950/60 bg-section-footer-cta">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Search bar */}
           <div className="w-full lg:w-1/2 flex flex-col space-y-3 text-left">
@@ -328,11 +357,11 @@ const Home = () => {
 
           {/* Stats counts */}
           <div className="w-full lg:w-1/2 grid grid-cols-3 gap-6 text-left border-l-0 lg:border-l border-emerald-950/60 lg:pl-10">
-            <div>
+            <div ref={r1}>
               <h4 className="text-3xl md:text-4xl font-black text-emerald-400">{patients.toLocaleString()}+</h4>
               <p className="text-xs md:text-sm text-slate-400 uppercase tracking-widest font-semibold mt-1">Patients Served</p>
             </div>
-            <div>
+            <div ref={r2}>
               <h4 className="text-3xl md:text-4xl font-black text-teal-400">{nurses.toLocaleString()}+</h4>
               <p className="text-xs md:text-sm text-slate-400 uppercase tracking-widest font-semibold mt-1">Verified Caregivers</p>
             </div>
@@ -345,7 +374,7 @@ const Home = () => {
       </section>
 
       {/* ══ TRUST PILLARS ═════════════════════════════════ */}
-      <section ref={trustReveal.ref} className="py-16 px-4 border-t border-b border-emerald-950/60" style={{ background: 'rgba(6,13,12,0.95)' }}>
+      <section ref={trustReveal.ref} className="py-16 px-4 border-t border-b border-emerald-950/60 bg-section-dark">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((h, i) => (
             <div
@@ -365,7 +394,7 @@ const Home = () => {
       </section>
 
       {/* ══ QUICK LINKS ═══════════════════════════════════ */}
-      <section className="py-24 px-4" style={{ background: 'linear-gradient(180deg, #060d0c 0%, #081512 100%)' }}>
+      <section className="py-24 px-4 bg-section-alternate">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-emerald-500/8 border border-emerald-500/20 px-4 py-2 rounded-full mb-6">
@@ -377,7 +406,7 @@ const Home = () => {
               <span className="text-gradient">Under One Roof</span>
             </h2>
             <p className="text-xl text-slate-400 mt-5 max-w-2xl mx-auto leading-relaxed">
-              From critical ICU setups to daily nursing care — PostMan delivers it all at your doorstep.
+              From critical ICU setups to daily nursing care — Paras Healthcare delivers it all at your doorstep.
             </p>
           </div>
 
@@ -409,7 +438,7 @@ const Home = () => {
       </section>
 
       {/* ══ TESTIMONIALS ══════════════════════════════════ */}
-      <section className="py-24 px-4 border-t border-emerald-950/40" style={{ background: 'linear-gradient(135deg, #030808 0%, #071210 100%)' }}>
+      <section className="py-24 px-4 border-t border-emerald-950/40 bg-hero-gradient">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-rose-500/8 border border-rose-500/20 px-4 py-2 rounded-full mb-6">
@@ -423,7 +452,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { text: "Setting up an ICU for my father was incredibly stressful. PostMan delivered a motorized cardiac bed, ventilator, and multi-para monitor within 4 hours. The clinical nurses were exceptional.", author: "Anjali Mehta", relation: "Daughter of Patient", location: "Mansarover, Jaipur" },
+              { text: "Setting up an ICU for my father was incredibly stressful. Paras Healthcare delivered a motorized cardiac bed, ventilator, and multi-para monitor within 4 hours. The clinical nurses were exceptional.", author: "Anjali Mehta", relation: "Daughter of Patient", location: "Malviya Nagar, Jaipur" },
               { text: "The post-stroke neuro-rehabilitation visits by their physiotherapist made all the difference. In 3 months, my husband regained 80% grip strength and is walking independently.", author: "Rakesh Sharma", relation: "Spouse", location: "Jaipur, Rajasthan" },
               { text: "As a senior living alone, having a trained nurse attendant visit weekly gives me immense peace of mind. Their empathy and professionalism are unmatched.", author: "Kalyani Nair", relation: "Self Patient", location: "Jaipur" },
             ].map((rev, i) => (
@@ -451,7 +480,7 @@ const Home = () => {
       </section>
 
       {/* ══ INSTANT CALLBACK CONSULTATION ══════════════════ */}
-      <section className="py-24 px-4 border-t border-emerald-950/40" style={{ background: '#050c0b' }}>
+      <section className="py-24 px-4 border-t border-emerald-950/40 bg-section-footer-cta">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* Left info column */}
@@ -539,14 +568,14 @@ const Home = () => {
       </section>
 
       {/* ══ CTA BANNER ════════════════════════════════════ */}
-      <section className="py-20 px-4" style={{ background: 'linear-gradient(135deg, #071410 0%, #0d2821 50%, #071410 100%)' }}>
+      <section className="py-20 px-4 bg-hero-gradient">
         <div className="max-w-4xl mx-auto text-center">
           <HeartPulse className="h-16 w-16 text-emerald-400 mx-auto mb-6 animate-pulse-subtle" />
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
             Ready to Experience <span className="text-gradient">Clinical Care at Home?</span>
           </h2>
           <p className="text-xl text-slate-400 mb-10 leading-relaxed">
-            Join 10,000+ families who chose comfort without compromising on quality.
+            Join 100+ families who chose comfort without compromising on quality.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <Link to="/register" className="btn-primary flex items-center space-x-2 text-lg">

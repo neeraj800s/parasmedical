@@ -4,6 +4,7 @@ import {
   HeartPulse, ShieldCheck, Award, Users, Clock, Target, ArrowUpRight,
   CheckCircle, Sparkles, Heart, Activity, Zap, Globe
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
@@ -60,12 +61,12 @@ const team = [
 ];
 
 const milestones = [
-  { year: '2018', event: 'Founded Paras Medical Store & PostMan with a team of 5 clinical professionals, setting up our central hub in Mansarover, Jaipur.' },
+  { year: '2018', event: 'Founded Paras Medical Store & Paras Healthcare with a team of 5 clinical professionals, setting up our central hub in Malviya Nagar, Jaipur.' },
   { year: '2019', event: 'Launched home nursing and ICU equipment rental services, partnering with 3 leading multi-specialty hospitals in Rajasthan.' },
   { year: '2020', event: 'Expanded support to home isolation patients, delivering over 1,500 oxygen concentrators and cylinders across Jaipur during critical health emergencies.' },
   { year: '2021', event: 'Crossed 5,000 patients served, launching dedicated diagnostics home-collection and advanced physiotherapy verticals.' },
   { year: '2022', event: 'Received premium ISO quality certifications for medical equipment calibration. Expanded direct delivery fleet to rural areas around Jaipur.' },
-  { year: '2023', event: 'Reached milestone of 10,000+ patients served in Rajasthan. Over 2,500 qualified caretakers registered in our healthcare database.' },
+  { year: '2023', event: 'Reached milestone of 100+ patients served in Rajasthan. Over 50 qualified caretakers registered in our healthcare database.' },
   { year: '2024', event: 'Established an automated device sterilization and testing facility in Jaipur, ensuring hospital-level sanitization for all rented ICU setups.' },
   { year: '2025', event: 'Partnered with key diagnostics labs to guarantee NABL-accredited test reports within 12 hours of home collection.' },
   { year: '2026', event: 'Launched digital real-time vital telemetry logging for home ICU patients, bridging the gap between home recovery and remote hospital consulting.' },
@@ -85,15 +86,20 @@ const AboutPage = () => {
   const valuesReveal    = useScrollReveal();
   const teamReveal      = useScrollReveal();
   const timelineReveal  = useScrollReveal();
-  const { count: c1, ref: r1 } = useCounter(10000);
-  const { count: c2, ref: r2 } = useCounter(2500);
+  const { count: c1, ref: r1 } = useCounter(100);
+  const { count: c2, ref: r2 } = useCounter(50);
   const { count: c3, ref: r3 } = useCounter(25);
 
   return (
-    <div className="page-enter" style={{ background: '#060d0c' }}>
+    <div className="page-enter bg-dark-page">
+      <SEO 
+        title="About Us" 
+        description="Learn about the journey, mission, and clinical experts of Paras Healthcare, providing top home care services in Jaipur."
+        keywords="about paras healthcare, home care jaipur team, clinical experts jaipur, paras medical store history"
+      />
 
       {/* ══ PAGE HERO ══════════════════════════════════════ */}
-      <section className="relative py-28 px-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #071410 60%, #060d0c 100%)' }}>
+      <section className="relative py-28 px-4 overflow-hidden bg-hero-gradient">
         <div className="absolute inset-0 hero-grid opacity-40" />
         <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-emerald-500/6 blur-[120px] animate-float pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-teal-500/5 blur-[100px] animate-float-slow pointer-events-none" style={{ animationDelay: '2s' }} />
@@ -107,7 +113,7 @@ const AboutPage = () => {
             Healing Begins <span className="text-gradient">Where the Heart Is</span>
           </h1>
           <p className={`text-xl md:text-2xl text-slate-400 leading-relaxed max-w-3xl mx-auto ${heroReveal.visible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
-            PostMan was born from a simple belief — patients heal faster, more safely, and more happily in the comfort of their own home, surrounded by the people they love.
+            Paras Healthcare was born from a simple belief — patients heal faster, more safely, and more happily in the comfort of their own home, surrounded by the people they love.
           </p>
         </div>
       </section>
@@ -115,7 +121,7 @@ const AboutPage = () => {
       <div className="section-divider" />
 
       {/* ══ MISSION ════════════════════════════════════════ */}
-      <section ref={missionReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={missionReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className={missionReveal.visible ? 'animate-fade-in-left' : 'opacity-0'}>
             <div className="inline-flex items-center space-x-2 bg-emerald-500/8 border border-emerald-500/20 px-4 py-2 rounded-full mb-6">
@@ -132,7 +138,7 @@ const AboutPage = () => {
               We partner with NABH-certified hospitals, NABL-accredited laboratories, and rigorously verified clinical professionals to create a care ecosystem that is safe, transparent, and deeply empathetic.
             </p>
             <div className="flex flex-col space-y-3">
-              {['100% NABH compliant clinical processes', 'Minimum 2-year experience mandatory for all staff', 'Real-time health monitoring & emergency escalation', 'Serving 25+ cities across India with 2,500+ caregivers'].map((point, i) => (
+              {['100% NABH compliant clinical processes', 'Minimum 2-year experience mandatory for all staff', 'Real-time health monitoring & emergency escalation', 'Serving 25+ cities across India with 50+ caregivers'].map((point, i) => (
                 <div key={i} className="flex items-center space-x-3 text-base text-slate-300">
                   <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0" />
                   <span>{point}</span>
@@ -161,7 +167,7 @@ const AboutPage = () => {
       <div className="section-divider" />
 
       {/* ══ STATS ══════════════════════════════════════════ */}
-      <section ref={statsReveal.ref} className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #071512 0%, #060d0c 100%)' }}>
+      <section ref={statsReveal.ref} className="py-20 px-4 bg-section-alternate-reverse">
         <div className="max-w-5xl mx-auto">
           <div ref={r1} className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -184,7 +190,7 @@ const AboutPage = () => {
       <div className="section-divider" />
 
       {/* ══ VALUES ═════════════════════════════════════════ */}
-      <section ref={valuesReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={valuesReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-rose-500/8 border border-rose-500/20 px-4 py-2 rounded-full mb-6">
@@ -214,7 +220,7 @@ const AboutPage = () => {
       <div className="section-divider" />
 
       {/* ══ TEAM ═══════════════════════════════════════════ */}
-      <section ref={teamReveal.ref} className="py-24 px-4" style={{ background: 'linear-gradient(180deg, #060d0c 0%, #071512 100%)' }}>
+      <section ref={teamReveal.ref} className="py-24 px-4 bg-section-alternate">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-teal-500/8 border border-teal-500/20 px-4 py-2 rounded-full mb-6">
@@ -248,7 +254,7 @@ const AboutPage = () => {
       <div className="section-divider" />
 
       {/* ══ TIMELINE ═══════════════════════════════════════ */}
-      <section ref={timelineReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={timelineReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-amber-500/8 border border-amber-500/20 px-4 py-2 rounded-full mb-6">
@@ -285,7 +291,7 @@ const AboutPage = () => {
       </section>
 
       {/* ══ FAQ SECTION ══════════════════════════════════════ */}
-      <section className="py-24 px-4 border-t border-emerald-950/60" style={{ background: '#040b09' }}>
+      <section className="py-24 px-4 border-t border-emerald-950/60 bg-section-footer-cta">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-white tracking-tight">
@@ -332,11 +338,11 @@ const AboutPage = () => {
       </section>
 
       {/* ══ CTA ════════════════════════════════════════════ */}
-      <section className="py-20 px-4 border-t border-emerald-950/40" style={{ background: 'linear-gradient(135deg, #030808 0%, #071410 100%)' }}>
+      <section className="py-20 px-4 border-t border-emerald-950/40 bg-hero-gradient">
         <div className="max-w-3xl mx-auto text-center">
           <Sparkles className="h-12 w-12 text-emerald-400 mx-auto mb-6 animate-spin-slow" />
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
-            Join the <span className="text-gradient">PostMan Family</span>
+            Join the <span className="text-gradient">Paras Healthcare Family</span>
           </h2>
           <p className="text-xl text-slate-400 mb-10">
             Experience clinical excellence and compassionate care — right in the comfort of your home.

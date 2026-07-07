@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Load user on startup if token exists
   useEffect(() => {
     const loadUser = async () => {
-      const token = localStorage.getItem('postman_token');
+      const token = localStorage.getItem('parashealthcare_token');
       if (!token) {
         setLoading(false);
         return;
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         if (data.success) {
           setUser(data.user);
         } else {
-          localStorage.removeItem('postman_token');
+          localStorage.removeItem('parashealthcare_token');
           setUser(null);
         }
       } catch (err) {
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
       const data = await response.json();
       if (data.success) {
-        localStorage.setItem('postman_token', data.token);
+        localStorage.setItem('parashealthcare_token', data.token);
         setUser(data.user);
         return { success: true };
       } else {
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
 
       const data = await response.json();
       if (data.success) {
-        localStorage.setItem('postman_token', data.token);
+        localStorage.setItem('parashealthcare_token', data.token);
         setUser(data.user);
         return { success: true };
       } else {
@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }) => {
 
   // Logout handler
   const logout = () => {
-    localStorage.removeItem('postman_token');
+    localStorage.removeItem('parashealthcare_token');
     setUser(null);
   };
 

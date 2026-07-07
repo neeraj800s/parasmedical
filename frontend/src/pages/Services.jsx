@@ -5,6 +5,7 @@ import {
   Activity, UserCheck, Heart, Stethoscope, Layers, Award,
   ShieldCheck, ArrowUpRight, CheckCircle, Sparkles, ChevronRight
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
@@ -37,6 +38,7 @@ const services = [
     features: ['24/7 ICU-trained nurse', 'Ventilator / BiPAP setup', 'Cardiac monitoring', 'Daily doctor supervision'],
     glowColor: 'hover:shadow-emerald-500/10',
     borderColor: 'hover:border-emerald-500/30',
+    bookingName: 'ICU at Home',
   },
   {
     id: 'nursing',
@@ -50,6 +52,7 @@ const services = [
     features: ['12-hour or 24-hour shifts', 'Geriatric-trained nurses', 'Wound & suture care', 'Vitals charting & reports'],
     glowColor: 'hover:shadow-teal-500/10',
     borderColor: 'hover:border-teal-500/30',
+    bookingName: 'Home Nursing',
   },
   {
     id: 'physio',
@@ -63,6 +66,7 @@ const services = [
     features: ['Certified manual therapist', 'Custom exercise plans', 'Pain management therapy', 'Post-stroke rehab expert'],
     glowColor: 'hover:shadow-rose-500/10',
     borderColor: 'hover:border-rose-500/30',
+    bookingName: 'Physiotherapy',
   },
   {
     id: 'doctor',
@@ -76,6 +80,7 @@ const services = [
     features: ['Senior physicians', 'Detailed health reports', 'Prescription updates', 'Geriatric health audits'],
     glowColor: 'hover:shadow-indigo-500/10',
     borderColor: 'hover:border-indigo-500/30',
+    bookingName: 'Doctor Visit',
   },
   {
     id: 'caregiver',
@@ -89,6 +94,21 @@ const services = [
     features: ['Fully background verified', 'CPR & emergency trained', 'Empathetic personality eval', '12-hour or 24-hour options'],
     glowColor: 'hover:shadow-amber-500/10',
     borderColor: 'hover:border-amber-500/30',
+    bookingName: 'Trained Attendant',
+  },
+  {
+    id: 'gda',
+    icon: <UserCheck className="h-8 w-8" />,
+    iconColor: 'text-teal-400',
+    iconBg: 'bg-teal-500/10',
+    tag: 'Attendant Support',
+    tagColor: 'text-teal-400 bg-teal-500/10 border-teal-500/20',
+    title: 'GDA & Patient Care Staff',
+    desc: 'Certified General Duty Assistants (GDA) to assist patients with daily living, mobility, nutrition, hygiene, and clinical monitoring support.',
+    features: ['Bathing & physical hygiene help', 'Assisted mobility & transfer', 'Timely medication reminders', 'Feeding & nutrition support'],
+    glowColor: 'hover:shadow-teal-500/10',
+    borderColor: 'hover:border-teal-500/30',
+    bookingName: 'GDA Staff',
   },
   {
     id: 'diagnostics',
@@ -102,6 +122,7 @@ const services = [
     features: ['NABL certified labs', 'Digital reports in 12 hours', 'Certified phlebotomists', 'Mobile diagnostic devices'],
     glowColor: 'hover:shadow-sky-500/10',
     borderColor: 'hover:border-sky-500/30',
+    bookingName: 'Diagnostics',
   },
 ];
 
@@ -152,10 +173,15 @@ const ServicesPage = () => {
   const pillarReveal  = useScrollReveal();
 
   return (
-    <div className="page-enter" style={{ background: '#060d0c' }}>
+    <div className="page-enter bg-dark-page">
+      <SEO 
+        title="Home ICU Setup & Home Nursing Services in Jaipur"
+        description="Comprehensive clinical home care programs in Jaipur. We provide customized home ICU setups, post-operative home nursing, geriatric caretakers, and physiotherapy visits."
+        keywords="home nursing services jaipur, home icu setup jaipur, home caretaker jaipur, physiotherapy home visit jaipur, doctor home visit, paras healthcare, paras medical store"
+      />
 
       {/* ══ PAGE HERO ══════════════════════════════════════ */}
-      <section className="relative py-28 px-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #071410 60%, #060d0c 100%)' }}>
+      <section className="relative py-28 px-4 overflow-hidden bg-hero-gradient">
         <div className="absolute inset-0 hero-grid opacity-40" />
         <div className="absolute top-1/3 left-1/4 h-72 w-72 rounded-full bg-emerald-500/6 blur-[100px] animate-float pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-teal-500/5 blur-[120px] animate-float-slow pointer-events-none" style={{ animationDelay: '2s' }} />
@@ -177,7 +203,7 @@ const ServicesPage = () => {
       <div className="section-divider" />
 
       {/* ══ SERVICES GRID ══════════════════════════════════ */}
-      <section ref={gridReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={gridReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => (
             <div
@@ -213,10 +239,11 @@ const ServicesPage = () => {
               </div>
 
               <div className="relative z-10 pt-6 mt-6 border-t border-emerald-950/60">
-                <Link
-                  to={user ? "/dashboard" : "/login"}
-                  className={`w-full flex items-center justify-center space-x-2 py-3.5 rounded-2xl text-base font-bold border transition-all duration-200 ${service.iconBg} ${service.iconColor} border-current/20 hover:opacity-80 active:scale-95`}
-                >
+                  <Link
+                    to={user ? "/dashboard" : "/login"}
+                    state={user ? { tab: 'bookings', serviceType: service.bookingName } : { from: '/dashboard', tab: 'bookings', serviceType: service.bookingName }}
+                    className={`w-full flex items-center justify-center space-x-2 py-3.5 rounded-2xl text-base font-bold border transition-all duration-200 ${service.iconBg} ${service.iconColor} border-current/20 hover:opacity-80 active:scale-95`}
+                  >
                   <span>Book This Service</span>
                   <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -229,7 +256,7 @@ const ServicesPage = () => {
       <div className="section-divider" />
 
       {/* ══ SPECIALIZED CLINICAL PROGRAMS ════════════════ */}
-      <section className="py-24 px-4 border-t border-emerald-950/60" style={{ background: '#040b09' }}>
+      <section className="py-24 px-4 border-t border-emerald-950/60 bg-section-footer-cta">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
@@ -295,7 +322,7 @@ const ServicesPage = () => {
       <div className="section-divider" />
 
       {/* ══ SAFETY PILLARS ═════════════════════════════════ */}
-      <section ref={pillarReveal.ref} className="py-24 px-4" style={{ background: 'linear-gradient(180deg, #060d0c 0%, #071512 100%)' }}>
+      <section ref={pillarReveal.ref} className="py-24 px-4 bg-section-alternate">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
 
           <div className={`lg:col-span-5 flex flex-col space-y-7 ${pillarReveal.visible ? 'animate-fade-in-left' : 'opacity-0'}`}>
@@ -354,7 +381,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ══ CTA ════════════════════════════════════════════ */}
-      <section className="py-20 px-4 border-t border-emerald-950/40" style={{ background: '#030808' }}>
+      <section className="py-20 px-4 border-t border-emerald-950/40 bg-section-footer-cta">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
             Ready to <span className="text-gradient">Book Your Service?</span>
@@ -368,7 +395,7 @@ const ServicesPage = () => {
               <ArrowUpRight className="h-5 w-5" />
             </Link>
             <Link to="/about" className="btn-ghost text-lg">
-              About PostMan
+              About Paras Healthcare
             </Link>
           </div>
         </div>

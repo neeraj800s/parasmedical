@@ -15,6 +15,7 @@ const BookingSchema = new mongoose.Schema({
       'Physiotherapy',
       'Doctor Visit',
       'Trained Attendant',
+      'GDA Staff',
       'Diagnostics'
     ]
   },

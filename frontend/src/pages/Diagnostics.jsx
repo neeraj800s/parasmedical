@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Layers, CheckCircle, Sparkles, ArrowUpRight, Clock, Shield, Zap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const useScrollReveal = (threshold = 0.02) => {
   const ref = useRef(null);
@@ -48,10 +49,15 @@ const DiagnosticsPage = () => {
   const testsReveal = useScrollReveal();
 
   return (
-    <div className="page-enter" style={{ background: '#060d0c' }}>
+    <div className="page-enter bg-dark-page">
+      <SEO 
+        title="At-Home Lab Diagnostics & Health Checkups in Jaipur"
+        description="Book home sample collections, full-body packages, home ECG setups, diabetes/kidney profiles with 12-hour report turnarounds in Malviya Nagar, Jaipur."
+        keywords="home blood collection jaipur, full body checkup jaipur, thyroid test home collection, home ecg jaipur, path labs jaipur, paras healthcare, paras medical store"
+      />
 
       {/* ══ PAGE HERO ══════════════════════════════════════ */}
-      <section className="relative py-28 px-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #030808 0%, #060f14 60%, #060d0c 100%)' }}>
+      <section className="relative py-28 px-4 overflow-hidden bg-hero-gradient">
         <div className="absolute inset-0 hero-grid opacity-40" />
         <div className="absolute top-1/3 right-1/4 h-72 w-72 rounded-full bg-sky-500/6 blur-[100px] animate-float pointer-events-none" />
         <div className="absolute bottom-1/4 left-1/4 h-80 w-80 rounded-full bg-teal-500/5 blur-[120px] animate-float-slow pointer-events-none" style={{ animationDelay: '2.5s' }} />
@@ -81,7 +87,7 @@ const DiagnosticsPage = () => {
       <div className="section-divider" />
 
       {/* ══ HOW IT WORKS ═══════════════════════════════════ */}
-      <section ref={howReveal.ref} className="py-24 px-4" style={{ background: '#060d0c' }}>
+      <section ref={howReveal.ref} className="py-24 px-4 bg-section-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
@@ -109,7 +115,7 @@ const DiagnosticsPage = () => {
       <div className="section-divider" />
 
       {/* ══ TESTS LIST ═════════════════════════════════════ */}
-      <section ref={testsReveal.ref} className="py-24 px-4" style={{ background: 'linear-gradient(180deg, #060d0c 0%, #071512 100%)' }}>
+      <section ref={testsReveal.ref} className="py-24 px-4 bg-section-alternate">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
@@ -136,6 +142,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <Link
                   to={user ? "/dashboard" : "/login"}
+                  state={user ? { tab: 'bookings', serviceType: 'Diagnostics', additionalNotes: `Requesting Test: ${test.name}` } : { from: '/dashboard', tab: 'bookings', serviceType: 'Diagnostics', additionalNotes: `Requesting Test: ${test.name}` }}
                   className="shrink-0 flex items-center space-x-2 bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 text-sky-300 font-bold px-6 py-3 rounded-xl text-base transition-all active:scale-95"
                 >
                   <span>Book Now</span>
@@ -148,7 +155,7 @@ const DiagnosticsPage = () => {
       </section>
 
       {/* ══ CTA ════════════════════════════════════════════ */}
-      <section className="py-20 px-4 border-t border-emerald-950/40" style={{ background: '#030808' }}>
+      <section className="py-20 px-4 border-t border-emerald-950/40 bg-section-footer-cta">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
             Schedule Your <span className="text-gradient">Home Diagnostic</span> Today

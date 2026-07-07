@@ -22,12 +22,17 @@ const EquipmentSchema = new mongoose.Schema({
       'Air Mattress (Anti-Decubitus)',
       'Foldable Wheelchair',
       'Motorized Wheelchair',
+      'Reclining Wheelchair',
+      'Adjustable Walker',
       'Commode Chair',
       'Patient Monitor (Multi-Para)',
       'Pulse Oximeter (Tabletop)',
       'Syringe Pump',
       'Infusion Pump',
-      'DVT Pump'
+      'Enteral Feeding Pump',
+      'DVT Pump',
+      'Nebulizer Machine',
+      'Hydraulic Patient Lifter'
     ]
   },
   bookingType: {

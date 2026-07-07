@@ -89,7 +89,7 @@ app.use('/api/equipment', equipmentRoutes);
 app.get('/', (req, res) => {
   res.json({
     status: 'online',
-    message: 'Welcome to PostMan Home Health secure API server'
+    message: 'Welcome to Paras Healthcare secure API server'
   });
 });
 
